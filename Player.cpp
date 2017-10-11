@@ -23,12 +23,13 @@ pubblic:
     
 private:
     Player(char Name, int Life){
-        this->Name = Name;
+        this->playerSymbol = playerSymbol;
+        this->playerName = playerName;
         this->Life = Life ;
     }
     
     int Life(){
-        life = 1000;
+       Life = 1000;
     }
     
     /* 
@@ -66,13 +67,13 @@ private:
             case LEFT:
                 x--;
                 break;
-            case RIGHT;
+            case RIGHT:
                 x++;
                 break;
-            case UP;
+            case UP:
                 y++;
                 break;
-            case DOWN;
+            case DOWN:
                 y--;
                 break;
             default:
