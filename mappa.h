@@ -2,6 +2,7 @@
 #define MAPPA_H
 #include "stanza.h"
 
+
 class mappa
 {
     public:
@@ -9,9 +10,13 @@ class mappa
         mappa();
         virtual ~mappa();
         creamappa();
+        scriviinfinestra();
         stampamappa();
+        //stanzasucc();
+        esistestanza();
+        std::vector<std::vector<stanza*> > strutturamappa;
+
     protected:
-            std::vector<std::vector<stanza*> > strutturamappa;
 
     private:
 };
