@@ -40,6 +40,9 @@ finestra.inizializzafinestra();
 */
 
          //printw("Hello word");
+       
+    finestra.anapuzza("hahah");//per stampare i caratteri dentro la mappa
+    
     refresh();
     getch();
     endwin();
