@@ -35,6 +35,7 @@ screen::inizializzafinestra(){
     getch(); //agiunto da ana
 }
 
+//creato per visualizare i caratteri dentro la mappa
 screen::stampadentromappa(char* test){
     wmove(win1,5,5);
     wprintw(win1,"asdasdadsad");
