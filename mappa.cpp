@@ -21,11 +21,11 @@ mappa::~mappa()
             srand(time(0));
             int y=(rand()%10+1);
             int z=(rand()%10+1);
-         strutturamappa.resize(20);
          //stanza test();
          stanza* x= new stanza();
          for(int i=0;i<20;i++){
                 for(int j=0;j<20;j++)
+                    stanza* x= new stanza();
                     strutturamappa[i].push_back(x);
         }
             cout<<y<<endl;
@@ -80,3 +80,13 @@ mappa::~mappa()
        /*mappa::scriviinfinestra(){
             wprintw(screen.win1,"g");
        }*/
+
+//crea una stanza all'interno della mappa nella posizione x,y presa in input
+//x,y indicano la posizione della prima stanza
+void mappa::istanzia(int x,int y){
+    //i cout erano di controllo
+    cout<<"il carattere e' ."<<strutturamappa[x][y]->room[0][0]<<"."<<endl;
+    strutturamappa[x][y]->creastanza();
+    cout<<"il carattere e' ."<<strutturamappa[x][y]->room[0][0]<<".";
+    cout<<endl;
+}
