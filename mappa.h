@@ -15,7 +15,7 @@ class mappa
         //stanzasucc();
         esistestanza();
         std::vector<std::vector<stanza*> > strutturamappa;
-
+        istanzia(int x, int y);
     protected:
 
     private:
