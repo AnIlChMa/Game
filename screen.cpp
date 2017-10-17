@@ -17,8 +17,8 @@ screen::~screen()
 }
 
 screen::inizializzafinestra(){
-    WINDOW *win1=newwin(25,120,0,0);
-    WINDOW *win2=newwin(5,120,25,0);
+    win1=newwin(25,120,0,0);
+    win2=newwin(5,120,25,0);
     getch();
 
     box(win1, ACS_VLINE, ACS_HLINE);
