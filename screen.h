@@ -8,14 +8,15 @@ class screen
         screen();
         virtual ~screen();
         inizializzafinestra();
-        stampadentromappa(char* test); //per stampare dentro mappa
+        stampadentromappa(char* test);
         WINDOW *win1, *win2;
+        WINDOW * test;
     protected:
         int x, y;
         int altezza, larghezza;
         //sottofinestre per il gioco
 
-        //ci dice se Ã¨ o meno una sottofinestra
+        //ci dice se è o meno una sottofinestra
         bool flag;
         //puntatore finestra padre(terminale)
         WINDOW *padre;

@@ -5,6 +5,7 @@
 #include<time.h>
 #include<stdlib.h>
 #include "screen.h"
+#include <ncurses/curses.h>
 
 using namespace std;
 mappa::mappa()
@@ -18,19 +19,19 @@ mappa::~mappa()
 }
      //funzione che crea la lista delle liste(ossia la lista delle matrici/stanze)
         mappa::creamappa(){
-            srand(time(0));
-            int y=(rand()%10+1);
-            int z=(rand()%10+1);
+            //srand(time(0));
+           // int y=(rand()%10+1);
+           // int z=(rand()%10+1);
          //stanza test();
-         stanza* x= new stanza();
+         strutturamappa.resize(20);
          for(int i=0;i<20;i++){
-                for(int j=0;j<20;j++)
-                    stanza* x= new stanza();
-                    strutturamappa[i].push_back(x);
-        }
-            cout<<y<<endl;
+                for(int j=0;j<20;j++){
+                   stanza* x=new stanza();
+                   strutturamappa[i].push_back(x);
+        }}
+           /* cout<<y<<endl;
                     cout<<z<<endl;
-                    strutturamappa[y][z]->creastanza();
+                    strutturamappa[y][z]->creastanza();*/
 
         }
  //non serve
@@ -77,13 +78,49 @@ mappa::~mappa()
         cout<<endl;
             }
         }
-       /*mappa::scriviinfinestra(){
-            wprintw(screen.win1,"g");
-       }*/
 
-//crea una stanza all'interno della mappa nella posizione x,y presa in input
+      /*mappa::scriviinfinestra(WINDOW *win1){
+           char tmp[7][9];
+           for(int i=0;i<20;i++){
+                for(int j=0;j<20;j++){
+                        for(int k=0;k<7;k++){
+                            for(int z=0;z<9;z++){
+
+                        tmp[i][j]=strutturamappa[i][j]->room[k][z];
+
+
+                           }}wmove(win1,7,5);
+                           wprintw(win1,"%s",tmp);
+                           wrefresh(win1);
+
+       }
+           }
+
+           //wprintw(win1, "\n");
+            }*/
+
+       /*    mappa::scriviinfinestra(){
+                vector<stanza*> st;
+                vector<std::vector<stanza*> > ::iterator iti;
+                vector<stanza*>::iterator itj;
+                vector<std::vector<stanza*> > *ptr;
+                ptr=&strutturamappa;
+                for(iti=strutturamappa.begin();iti!=strutturamappa.end();iti++){
+                        for(itj=(*iti).begin();itj!=(*iti).end();itj++){
+                                for(int k=0;k<7;k++){
+                                    for(int z=0;z<9;z++){
+                                        cout<<strutturamappa[k][z]->room[k][z];
+                                        //cout<<ptr->at(stanza.room[k][z])<<endl;
+                }
+                               }
+                           }
+                }
+            }*/
+
+
+            //crea una stanza all'interno della mappa nella posizione x,y presa in input
 //x,y indicano la posizione della prima stanza
-void mappa::istanzia(int x,int y){
+    mappa::istanzia(int x,int y){
     //i cout erano di controllo
     cout<<"il carattere e' ."<<strutturamappa[x][y]->room[0][0]<<"."<<endl;
     strutturamappa[x][y]->creastanza();

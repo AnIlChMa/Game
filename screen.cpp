@@ -23,24 +23,24 @@ screen::inizializzafinestra(){
 
     box(win1, ACS_VLINE, ACS_HLINE);
     box(win2, ACS_VLINE, ACS_HLINE);
-    refresh(); //agiunto da ana
+    refresh();
 
-    wprintw(win1,"cacca"); // agiunto da ana
     wprintw(win2, "Status: ");
     //wprintw(win1,mappa.strutturamappa);
     wrefresh(win1);
     wrefresh(win2);
     //mvwaddchnstr(win1,1,1,mappa.strutturamappa,100);
     wrefresh(win1);
-    getch(); //agiunto da ana
+    getch();
 }
-
-//creato per visualizare i caratteri dentro la mappa
 screen::stampadentromappa(char* test){
+
     wmove(win1,5,5);
-    wprintw(win1,"asdasdadsad");
+    wprintw(win1,"%s",test);
     wrefresh(win1);
     getch();
 }
+
+
 
 

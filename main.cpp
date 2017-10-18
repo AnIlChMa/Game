@@ -12,37 +12,29 @@ using namespace std;
 
 int main()
 {
-initscr();
+   initscr();
     mappa pippo;
-    pippo.creamappa();
-    pippo.esistestanza();
-//    pippo.scriviinfinestra();
-
-    //screen finestra(0,0,30,120);
+    stanza bla;
     screen finestra;
-    //screen fin(finestra,0,0,25,120);
-finestra.inizializzafinestra();
-    refresh();
-     //mvwvline(finestra.win1,1,1,pippo.strutturamappa,100);
-    //cbreak(finestra.win1)
+    finestra.inizializzafinestra();
+    //finestra.stampadentromappa(bla.ptr);
 
 
+    pippo.creamappa();
+    pippo.istanzia(3,4);
+    pippo.esistestanza();
 
+    //pippo.scriviinfinestra(finestra.win1);
 
-    //pippo.stampamappa();
-
-   /* stanza bla;
     bla.creastanza();
-
-
     bla.creaporta();
-    bla.stamparoom();
-*/
+    //bla.stamparoom();
+    char* ptr;
+     ptr=&bla.room[7][9];
+        bla.wprintroom(finestra.win1,ptr);
 
-         //printw("Hello word");
-       
-    finestra.stampadentromappa("hahah");//per stampare i caratteri dentro la mappa
-    
+
+
     refresh();
     getch();
     endwin();

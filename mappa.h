@@ -1,6 +1,7 @@
 #ifndef MAPPA_H
 #define MAPPA_H
 #include "stanza.h"
+#include "screen.h"
 
 
 class mappa
@@ -10,12 +11,12 @@ class mappa
         mappa();
         virtual ~mappa();
         creamappa();
-        scriviinfinestra();
-        stampamappa();
-        //stanzasucc();
+        scriviinfinestra(WINDOW *win1);
+                 stampamappa();
         esistestanza();
         std::vector<std::vector<stanza*> > strutturamappa;
-        istanzia(int x, int y);
+        istanzia(int x,int y);
+
     protected:
 
     private:
