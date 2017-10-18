@@ -12,6 +12,7 @@ using namespace std;
 
 int main()
 {
+
    initscr();
     mappa pippo;
     stanza bla;
@@ -21,16 +22,18 @@ int main()
 
 
     pippo.creamappa();
+    bla.creastanza();
     pippo.istanzia(3,4);
-    pippo.esistestanza();
+    //pippo.esistestanza();
 
     //pippo.scriviinfinestra(finestra.win1);
 
-    bla.creastanza();
-    bla.creaporta();
+
+    //bla.creaporta();
     //bla.stamparoom();
     char* ptr;
      ptr=&bla.room[7][9];
+     cout<<"comincia";
         bla.wprintroom(finestra.win1,ptr);
 
 

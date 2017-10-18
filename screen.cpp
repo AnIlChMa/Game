@@ -36,7 +36,7 @@ screen::inizializzafinestra(){
 screen::stampadentromappa(char* test){
 
     wmove(win1,5,5);
-    wprintw(win1,"%s",test);
+    //wprintw(win1,"%s",test);
     wrefresh(win1);
     getch();
 }
