@@ -74,15 +74,19 @@ stanza::~stanza()
 
         switch(k){
         case 1:{
+            room[6][4]='/';
             wprintroom(win1,3,50);}
         break;
             case 2:{
+                room[3][0]='/';
             wprintroom(win1,9,58);}
             break;
                 case 3:{
+                    room[0][4]='/';
                 wprintroom(win1,15,50);}
                 break;
                     case 4:{
+                        room[3][8]='/';
                     wprintroom(win1,9,42);}
                     break;
                     default:
@@ -92,21 +96,5 @@ stanza::~stanza()
         }
 
 
-     stanza::creaporta(){
-         int k;
-         srand(time(0));
-           k=(rand()%4+1);
-         if (k==1){
-         room[0][4]='/';
-         }
-         if (k==2){
-            room[3][8]='/';
-            }
-         if  (k==3){
-            room[6][4]='/';
-            }
-         if (k==4){
-            room[3][0]='/';
-                     }
-     }
+
 

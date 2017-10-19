@@ -48,32 +48,7 @@ mappa::~mappa()
 
         }*/
 
-      /*mappa::stanzasucc(WINDOW *win1){
-        srand(time(0));
-        int k=(rand()%4+1);
-        //senso orario
-        for(int i=0;i<20;i++){
-                for(int j=0;j<20;j++){
-        switch(k){
-        case 1:{
-            strutturamappa[i][j]->wprintroom(win1,1,50);}
-        break;
-            case 2:{
-            strutturamappa[i][j]->wprintroom(win1,9,59);}
-            break;
-                case 3:{
-                strutturamappa[i][j]->wprintroom(win1,17,50);}
-                break;
-                    case 4:{
-                    strutturamappa[i][j]->wprintroom(win1,9,41);}
-                    break;
-                    default:
-                        break;
 
-        }
-               }
-        }
-        }*/
 
 
 //funzione che controlla l'esistenza delle stanze visto che non si possono visualizzare senza ncurses tramite una matrice che stampa 0 se non c'e e 1 altrimenti
