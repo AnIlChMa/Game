@@ -11,6 +11,7 @@ class screen
         stampadentromappa(char* test);
         WINDOW *win1, *win2;
         WINDOW * test;
+
     protected:
         int x, y;
         int altezza, larghezza;

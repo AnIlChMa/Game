@@ -13,13 +13,12 @@ class stanza
     public:
         stanza();
         char room[7][10];
-        char* ptr;
 
         virtual ~stanza();
         creastanza();
         stamparoom();
         creaporta();
-        wprintroom(WINDOW *win1,char* ptr);
+        wprintroom(WINDOW *win1,int x,int y);
 
 
     protected:

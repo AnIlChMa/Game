@@ -36,8 +36,8 @@ stanza::~stanza()
                 room[r][9]='\0';
         }
         for(int c=0;c<9;c++){
-                room[0][c]='_';
-                room[6][c]='-';
+                room[0][c]='O';
+                room[6][c]='O';
         }
 
             room[3][4]='@';
@@ -69,50 +69,16 @@ stanza::~stanza()
          }
      }
 
-    /* stanza::wprintroom(WINDOW *win1){
-         char r[7][9];
-         r[7][9]=room[7][9];
-         for(int i=0;i<7;i++){
-            for(int j=0;j<9;j++){
-                    wprintw(win1,"%s",r[i][j]);
-                    wrefresh(win1);
-                    getch();
-            }
-            }
-    }*/
 
-    stanza::wprintroom(WINDOW *win1,char* ptr){
-    cout<<"entra";
-        //for(int i=1;i<23;i++){
-            //for(int j=1;j<118;j++){
-           // for(int r=1;r<2;r++){
-           /*wprintw(win1,"crea stanza");
-                ptr=&room[1][1];
-                wprintw(win1,"\n");
-                    wprintw(win1,"%s",ptr);*/
-            //wrefresh(win1);
-            //wprintw(win1,"\0");
-           //for(int c=1;c<7;c++){
+    stanza::wprintroom(WINDOW *win1,int x,int y){
+    //cout<<"entra";
+//ciclo per stampare la stanza, stampiamo come se fossero "array" di riga
                 for(int r=0;r<7;r++){
-                        //char car;
-                        //car=room[c][r];
-
-                        //c[2]='\0';
-                        //mvwprintw(win1,1,1,"%s",room);
-
-                        mvwprintw(win1,r+1,1,"%s",room[r]);
+                        mvwprintw(win1,r+x,y,"%s",room[r]);
 
                 }
-            //wprintw(win1, "\n");
-            //wprintw(win1,"\n");
-
-            //}
             wrefresh(win1);
-        //wrefresh(win1);
-        printf(ptr);
-       // }
-           // }
-        //}
+              // printf(ptr);
     }
 
 

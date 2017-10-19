@@ -19,7 +19,7 @@ screen::~screen()
 screen::inizializzafinestra(){
     win1=newwin(25,120,0,0);
     win2=newwin(5,120,25,0);
-    getch();
+    //getch();
 
     box(win1, ACS_VLINE, ACS_HLINE);
     box(win2, ACS_VLINE, ACS_HLINE);
@@ -31,8 +31,9 @@ screen::inizializzafinestra(){
     wrefresh(win2);
     //mvwaddchnstr(win1,1,1,mappa.strutturamappa,100);
     wrefresh(win1);
-    getch();
+    //getch();
 }
+
 screen::stampadentromappa(char* test){
 
     wmove(win1,5,5);
