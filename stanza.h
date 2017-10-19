@@ -19,6 +19,7 @@ class stanza
         stamparoom();
         creaporta();
         wprintroom(WINDOW *win1,int x,int y);
+        stanzasucc(WINDOW *win1);
 
 
     protected:

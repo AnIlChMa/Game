@@ -41,21 +41,7 @@ stanza::~stanza()
         }
 
             room[3][4]='@';
-        /*for(int r=1;r<7;r++){
-                Matrice[r]->a[1]='|';
-                Matrice[r]->a[8]='|';
-        }
-        for(int c=1;c<9;c++){
-                Matrice[1]->a[c]='_';
-                Matrice[6]->a[c]='-';
-        }
-                for(int r=2;r<6;r++){
-                    for(int c=2;c<8;c++){
-                        Matrice[r]->a[c]=' ';
-                    }
-                }
-        Matrice[7]->a[9]='\0';
-            Matrice[3]->a[4]='@';*/
+
     }
 
 
@@ -80,6 +66,30 @@ stanza::~stanza()
             wrefresh(win1);
               // printf(ptr);
     }
+
+    stanza::stanzasucc(WINDOW *win1){
+        srand(time(0));
+        int k=(rand()%4+1);
+        //senso orario
+
+        switch(k){
+        case 1:{
+            wprintroom(win1,3,50);}
+        break;
+            case 2:{
+            wprintroom(win1,9,58);}
+            break;
+                case 3:{
+                wprintroom(win1,15,50);}
+                break;
+                    case 4:{
+                    wprintroom(win1,9,42);}
+                    break;
+                    default:
+                        break;
+        }
+        wrefresh(win1);
+        }
 
 
      stanza::creaporta(){

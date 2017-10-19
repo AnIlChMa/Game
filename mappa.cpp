@@ -48,7 +48,7 @@ mappa::~mappa()
 
         }*/
 
-      mappa::stanzasucc(WINDOW *win1){
+      /*mappa::stanzasucc(WINDOW *win1){
         srand(time(0));
         int k=(rand()%4+1);
         //senso orario
@@ -73,7 +73,7 @@ mappa::~mappa()
         }
                }
         }
-        }
+        }*/
 
 
 //funzione che controlla l'esistenza delle stanze visto che non si possono visualizzare senza ncurses tramite una matrice che stampa 0 se non c'e e 1 altrimenti

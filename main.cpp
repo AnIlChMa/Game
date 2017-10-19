@@ -36,7 +36,7 @@ initscr();
      ptr=&bla.room[7][9];
      //cout<<"comincia";
         bla.wprintroom(finestra.win1,9,50);
-        pippo.stanzasucc(finestra.win1);
+        bla.stanzasucc(finestra.win1);
         //bla.wprintroom(finestra.win1,3,50);
         //bla.wprintroom(finestra.win1,9,58);
         //bla.wprintroom(finestra.win1,15,50);

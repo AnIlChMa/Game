@@ -14,7 +14,7 @@ class mappa
         scriviinfinestra(WINDOW *win1);
                  stampamappa();
         esistestanza();
-        stanzasucc(WINDOW *win1);
+
         std::vector<std::vector<stanza*> > strutturamappa;
         istanzia(int x,int y);
 
