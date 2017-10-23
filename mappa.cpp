@@ -52,7 +52,7 @@ mappa::~mappa()
 
 
 //funzione che controlla l'esistenza delle stanze visto che non si possono visualizzare senza ncurses tramite una matrice che stampa 0 se non c'e e 1 altrimenti
-        mappa::esistestanza(){
+        mappa::esistestanza(WINDOW *win1){
             bool flag[20][20];
             for(int i=0;i<20;i++){
                 for(int j=0;j<20;j++){
@@ -63,61 +63,96 @@ mappa::~mappa()
                 }
             }
 
-                                    //flag[3][4]=true;
-                //cout<<flag[3][4];
+
+
             for(int i=0;i<20;i++){
                     for(int j=0;j<20;j++){
-                            cout<<flag[i][j];
+                        //cout<<flag[i][j];
+                        if(flag[i][j]==true){
+                            strutturamappa[i][j]->wprintroom(win1, i*7, j*9);
+                  }
         }
-        cout<<endl;
+                //cout<<endl;
+                wrefresh(win1);
+            }
+
+        }
+
+        mappa::stanzasucc(WINDOW *win1){
+    bool flag[20][20];
+    for(int i=0;i<20;i++){
+        for(int j=0;j<20;j++){
+            if(strutturamappa[i][j]->room[0][0]!=' ')
+                flag[i][j]=true;
+            else
+                flag[i][j]=false;
+        }
+    }
+
+    for(int i=0; i<20;i++){
+        for(int j=0;j<20;j++){
+            if(flag[i][j]==true){
+                srand(time(0));
+                int k=(rand()%4+1);
+
+                switch(k){
+                    case 1:{
+                        if(flag[i-1][j]==false){
+                         strutturamappa[i][j]->room[0][4]='/';
+                        istanzia(win1,i-1, j);
+                        strutturamappa[i-1][j]->room[6][4]='/';
+                        esistestanza(win1);
+                        wrefresh(win1);
+                        }
+                    }
+                        break;
+                    case 2:{
+                        if(flag[i][j+1]==false){
+                        strutturamappa[i][j]->room[3][8]='/';
+                         istanzia(win1, i, j+1);
+                        strutturamappa[i][j+1]->room[3][0]='/';
+
+                        esistestanza(win1);
+                        wrefresh(win1);
+                        }
+                    }
+                        break;
+                    case 3:{
+                        if(flag[i+1][j]==false){
+                        strutturamappa[i][j]->room[6][4]='/';
+                        istanzia(win1,i+1, j);
+                        strutturamappa[i+1][j]->room[0][4]='/';
+
+                        esistestanza(win1);
+                        wrefresh(win1);}
+
+                    }
+                        break;
+                    case 4:{
+                        if(flag[i][j]==false){
+                        strutturamappa[i][j-1]->room[3][0]='/';
+                        istanzia(win1, i, j-1);
+                        strutturamappa[i][j-1]->room[3][8]='/';
+
+                        esistestanza(win1);
+                        wrefresh(win1);
+                        }
+                    }
+                        break;
+                    default:
+                        break;
+                }
+                wrefresh(win1);
             }
         }
+    }
 
-      /*mappa::scriviinfinestra(WINDOW *win1){
-           char tmp[7][9];
-           for(int i=0;i<20;i++){
-                for(int j=0;j<20;j++){
-                        for(int k=0;k<7;k++){
-                            for(int z=0;z<9;z++){
-
-                        tmp[i][j]=strutturamappa[i][j]->room[k][z];
-
-
-                           }}wmove(win1,7,5);
-                           wprintw(win1,"%s",tmp);
-                           wrefresh(win1);
-
-       }
-           }
-
-           //wprintw(win1, "\n");
-            }*/
-
-       /*    mappa::scriviinfinestra(){
-                vector<stanza*> st;
-                vector<std::vector<stanza*> > ::iterator iti;
-                vector<stanza*>::iterator itj;
-                vector<std::vector<stanza*> > *ptr;
-                ptr=&strutturamappa;
-                for(iti=strutturamappa.begin();iti!=strutturamappa.end();iti++){
-                        for(itj=(*iti).begin();itj!=(*iti).end();itj++){
-                                for(int k=0;k<7;k++){
-                                    for(int z=0;z<9;z++){
-                                        cout<<strutturamappa[k][z]->room[k][z];
-                                        //cout<<ptr->at(stanza.room[k][z])<<endl;
-                }
-                               }
-                           }
-                }
-            }*/
+}
 
 
             //crea una stanza all'interno della mappa nella posizione x,y presa in input
 //x,y indicano la posizione della prima stanza
-    mappa::istanzia(int x,int y){
-    //i cout erano di controllo
-    cout<<"il carattere e' ."<<strutturamappa[x][y]->room[0][0]<<"."<<endl;
+    mappa::istanzia(WINDOW *win1,int x,int y){
     strutturamappa[x][y]->creastanza();
-    cout<<"il carattere e' ."<<strutturamappa[x][y]->room[0][0]<<".";
-    cout<<endl;
+
 }

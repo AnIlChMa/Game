@@ -13,10 +13,11 @@ class mappa
         creamappa();
         scriviinfinestra(WINDOW *win1);
                  stampamappa();
-        esistestanza();
+        esistestanza(WINDOW *win1);
+        stanzasucc(WINDOW *win1);
 
         std::vector<std::vector<stanza*> > strutturamappa;
-        istanzia(int x,int y);
+        istanzia(WINDOW *win1,int x,int y);
 
     protected:
 

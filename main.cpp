@@ -5,6 +5,7 @@
 #include <ctime>
 #include <ncurses/curses.h>
 #include "screen.h"
+#include "Position.h"
 #include<vector>
 using namespace std;
 //const int size=12;
@@ -15,6 +16,7 @@ int main()
 initscr();
 
     mappa pippo;
+    Position pos;
     stanza bla;
     screen finestra;
     finestra.inizializzafinestra();
@@ -22,25 +24,24 @@ initscr();
 
 
     pippo.creamappa();
-    bla.creastanza();
-    pippo.istanzia(3,4);
+    //bla.creastanza();
     //pippo.esistestanza();
 
     //pippo.scriviinfinestra(finestra.win1);
 
+pippo.istanzia(finestra.win1,2,8);
+     pippo.esistestanza(finestra.win1);
 
 
     //bla.creaporta();
-    //bla.stamparoom();
-    char* ptr;
-     ptr=&bla.room[7][9];
      //cout<<"comincia";
-        bla.wprintroom(finestra.win1,9,50);
-        bla.stanzasucc(finestra.win1);
-        //bla.wprintroom(finestra.win1,3,50);
-        //bla.wprintroom(finestra.win1,9,58);
-        //bla.wprintroom(finestra.win1,15,50);
-        //bla.wprintroom(finestra.win1,9,42);
+        //bla.wprintroom(finestra.win1,9,50);
+        pippo.stanzasucc(finestra.win1);
+        keypad(stdscr, TRUE);
+           pos.posmove(finestra.win1,pippo);
+
+
+       // bla.stanzasucc(finestra.win1);
 
 
 

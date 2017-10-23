@@ -5,6 +5,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<string>
+#include "Position.h"
 
 using namespace std;
 stanza::stanza()
@@ -36,11 +37,10 @@ stanza::~stanza()
                 room[r][9]='\0';
         }
         for(int c=0;c<9;c++){
-                room[0][c]='O';
-                room[6][c]='O';
+                room[0][c]='-';
+                room[6][c]='-';
         }
 
-            room[3][4]='@';
 
     }
 
