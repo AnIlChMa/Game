@@ -129,8 +129,8 @@ mappa::~mappa()
                     }
                         break;
                     case 4:{
-                        if(flag[i][j]==false){
-                        strutturamappa[i][j-1]->room[3][0]='/';
+                        if(flag[i][j-1]==false){
+                        strutturamappa[i][j]->room[3][0]='/';
                         istanzia(win1, i, j-1);
                         strutturamappa[i][j-1]->room[3][8]='/';
 

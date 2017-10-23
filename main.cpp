@@ -38,12 +38,10 @@ pippo.istanzia(finestra.win1,2,8);
         //bla.wprintroom(finestra.win1,9,50);
         pippo.stanzasucc(finestra.win1);
         keypad(stdscr, TRUE);
-           pos.posmove(finestra.win1,pippo);
+           pos.posmove(finestra.win1,pippo,2,8);
 
 
        // bla.stanzasucc(finestra.win1);
-
-
 
 
 

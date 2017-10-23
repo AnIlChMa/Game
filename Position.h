@@ -12,7 +12,7 @@ class Position
         char a[1];
         int posy;
         //virtual ~Position();
-        posmove(WINDOW *win1,mappa mapp);
+        posmove(WINDOW *win1,mappa mapp,int i,int j);
         passaporta(WINDOW *win1,mappa mapp,int i,int j);
 
 

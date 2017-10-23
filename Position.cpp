@@ -13,81 +13,81 @@ Position::Position()
 }
 
 
-Position::posmove(WINDOW *win1, mappa mapp){
+Position::posmove(WINDOW *win1, mappa mapp,int i,int j){
 
     int ch= 0;
-    mapp.strutturamappa[2][8]->room[posx][posy]=a[0];
+    mapp.strutturamappa[i][j]->room[posx][posy]=a[0];
     mapp.esistestanza(win1);
     while((ch=getch())!= 'q')
     {
         switch(ch)
         {
             case KEY_UP:{
-                if(mapp.strutturamappa[2][8]->room[posx-1][posy]!='-' ){
-                        if(mapp.strutturamappa[2][8]->room[posx-1][posy]=='/'){
-                                passaporta(win1,mapp,2,8);}
+                if(mapp.strutturamappa[i][j]->room[posx-1][posy]!='-' ){
+                        if(mapp.strutturamappa[i][j]->room[posx-1][posy]=='/'){
+                                passaporta(win1,mapp,i,j);}
                         else{
-                mapp.strutturamappa[2][8]->room[posx][posy]=' ';
+                mapp.strutturamappa[i][j]->room[posx][posy]=' ';
                 posx--;
 
-                mapp.strutturamappa[2][8]->room[posx][posy]='@';
+                mapp.strutturamappa[i][j]->room[posx][posy]='@';
                 mapp.esistestanza(win1);
                         }
                 }
                 else
-                    mapp.strutturamappa[2][8]->room[posx][posy]='@';
+                    mapp.strutturamappa[i][j]->room[posx][posy]='@';
             break;
             }
 
             case KEY_DOWN:{
 
-                if(mapp.strutturamappa[2][8]->room[posx+1][posy]!='-' ){
-                        if(mapp.strutturamappa[2][8]->room[posx+1][posy]=='/'){
-                                passaporta(win1,mapp,2,8);}
+                if(mapp.strutturamappa[i][j]->room[posx+1][posy]!='-' ){
+                        if(mapp.strutturamappa[i][j]->room[posx+1][posy]=='/'){
+                                passaporta(win1,mapp,i,j);}
                         else{
-                mapp.strutturamappa[2][8]->room[posx][posy]=' ';
+                mapp.strutturamappa[i][j]->room[posx][posy]=' ';
                 posx++;
-                mapp.strutturamappa[2][8]->room[posx][posy]='@';
+                mapp.strutturamappa[i][j]->room[posx][posy]='@';
                 mapp.esistestanza(win1);
                 }
                 }
                 else
-                    mapp.strutturamappa[2][8]->room[posx][posy]='@';
+                    mapp.strutturamappa[i][j]->room[posx][posy]='@';
                 break;
 
             }
 
             case KEY_RIGHT:{
-                if(mapp.strutturamappa[2][8]->room[posx][posy+1]!='|' ){
-                        if(mapp.strutturamappa[2][8]->room[posx][posy+1]=='/'){
-                                passaporta(win1,mapp,2,8);}
+                if(mapp.strutturamappa[i][j]->room[posx][posy+1]!='|' ){
+                        if(mapp.strutturamappa[i][j]->room[posx][posy+1]=='/'){
+                                passaporta(win1,mapp,i,j);}
                         else{
-                mapp.strutturamappa[2][8]->room[posx][posy]=' ';
+                mapp.strutturamappa[i][j]->room[posx][posy]=' ';
                 posy++;
 
-                mapp.strutturamappa[2][8]->room[posx][posy]='@';
+                mapp.strutturamappa[i][j]->room[posx][posy]='@';
                 mapp.esistestanza(win1);
                 }}
                 else
-                    mapp.strutturamappa[2][8]->room[posx][posy]='@';
+                    mapp.strutturamappa[i][j]->room[posx][posy]='@';
                 break;
 
             }
 
             case KEY_LEFT:{
-                if(mapp.strutturamappa[2][8]->room[posx][posy-1]!='|' ){
-                        if(mapp.strutturamappa[2][8]->room[posx][posy-1]=='/'){
-                                passaporta(win1,mapp,2,8);}
+                if(mapp.strutturamappa[i][j]->room[posx][posy-1]!='|' ){
+                        if(mapp.strutturamappa[i][j]->room[posx][posy-1]=='/'){
+                                passaporta(win1,mapp,i,j);}
                         else{
-                mapp.strutturamappa[2][8]->room[posx][posy]=' ';
+                mapp.strutturamappa[i][j]->room[posx][posy]=' ';
                 posy--;
 
-                mapp.strutturamappa[2][8]->room[posx][posy]='@';
+                mapp.strutturamappa[i][j]->room[posx][posy]='@';
                 mapp.esistestanza(win1);
                 }
             }
                 else
-                    mapp.strutturamappa[2][8]->room[posx][posy]='@';
+                    mapp.strutturamappa[i][j]->room[posx][posy]='@';
                 break;
 
             }
@@ -110,30 +110,42 @@ wrefresh(win1);
 //stanza succ sopra
 if(posy==4 & posx-1==0){
     i--;
-mapp.strutturamappa[i][j]->room[5][4]='@';
+    posx=5;
+    posy=4;
+mapp.strutturamappa[i][j]->room[posx][posy]='@';
 mapp.esistestanza(win1);
+posmove(win1,mapp,i,j);
 wrefresh(win1);}
 
 //stanza succ sotto
 if(posy==4 & posx+1==6){
     i++;
-mapp.strutturamappa[i][j]->room[1][4]='@';
+     posx=1;
+     posy=4;
+mapp.strutturamappa[i][j]->room[posx][posy]='@';
 mapp.esistestanza(win1);
+posmove(win1,mapp,i,j);
 wrefresh(win1);
 }
 
 //stanza succ destra
 if(posy+1==8 & posx==3){
     j++;
-mapp.strutturamappa[i][j]->room[3][1]='@';
+     posx=3;
+     posy=1;
+mapp.strutturamappa[i][j]->room[posx][posy]='@';
 mapp.esistestanza(win1);
+posmove(win1,mapp,i,j);
 wrefresh(win1);}
 
 //stanza succ sinistra
 if(posy-1==0 & posx==3){
     j--;
-mapp.strutturamappa[i][j]->room[3][7]='@';
+     posx=3;
+     posy=7;
+mapp.strutturamappa[i][j]->room[posx][posy]='@';
 mapp.esistestanza(win1);
+posmove(win1,mapp,i,j);
 wrefresh(win1);}
 
 }
