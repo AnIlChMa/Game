@@ -108,30 +108,30 @@ mapp.strutturamappa[i][j]->room[posx][posy]=' ';
 mapp.esistestanza(win1);
 wrefresh(win1);
 //stanza succ sopra
-if(posy=='4' & posx-1=='0'){
+if(posy==4 & posx-1==0){
     i--;
 mapp.strutturamappa[i][j]->room[5][4]='@';
 mapp.esistestanza(win1);
 wrefresh(win1);}
 
 //stanza succ sotto
-if(posy=='4' & posx+1=='6'){
-    i--;
+if(posy==4 & posx+1==6){
+    i++;
 mapp.strutturamappa[i][j]->room[1][4]='@';
 mapp.esistestanza(win1);
 wrefresh(win1);
 }
 
 //stanza succ destra
-if(posy+1=='8' & posx=='3'){
-    i--;
+if(posy+1==8 & posx==3){
+    j++;
 mapp.strutturamappa[i][j]->room[3][1]='@';
 mapp.esistestanza(win1);
 wrefresh(win1);}
 
 //stanza succ sinistra
-if(posy-1=='0' & posx=='3'){
-    i--;
+if(posy-1==0 & posx==3){
+    j--;
 mapp.strutturamappa[i][j]->room[3][7]='@';
 mapp.esistestanza(win1);
 wrefresh(win1);}
