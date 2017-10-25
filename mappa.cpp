@@ -18,7 +18,7 @@ mappa::~mappa()
     //dtor
 }
      //funzione che crea la lista delle liste(ossia la lista delle matrici/stanze)
-        mappa::creamappa(){
+        void mappa::creamappa(){
             //srand(time(0));
            // int y=(rand()%10+1);
            // int z=(rand()%10+1);
@@ -52,7 +52,7 @@ mappa::~mappa()
 
 
 //funzione che controlla l'esistenza delle stanze visto che non si possono visualizzare senza ncurses tramite una matrice che stampa 0 se non c'e e 1 altrimenti
-        mappa::esistestanza(WINDOW *win1){
+       void mappa::esistestanza(WINDOW *win1){
             bool flag[20][20];
             for(int i=0;i<20;i++){
                 for(int j=0;j<20;j++){
@@ -67,9 +67,10 @@ mappa::~mappa()
 
             for(int i=0;i<20;i++){
                     for(int j=0;j<20;j++){
-                        //cout<<flag[i][j];
+                    //cout<<flag[i][j];
                         if(flag[i][j]==true){
-                            strutturamappa[i][j]->wprintroom(win1, i*7, j*9);
+
+                            strutturamappa[i][j]->wprintroom(win1, i*7,j*9);
                   }
         }
                 //cout<<endl;
@@ -78,7 +79,7 @@ mappa::~mappa()
 
         }
 
-        mappa::stanzasucc(WINDOW *win1){
+   void mappa::stanzasucc(WINDOW *win1){
     bool flag[20][20];
     for(int i=0;i<20;i++){
         for(int j=0;j<20;j++){
@@ -88,9 +89,10 @@ mappa::~mappa()
                 flag[i][j]=false;
         }
     }
-
     for(int i=0; i<20;i++){
         for(int j=0;j<20;j++){
+                if(((i*7)>1) && ((j*9)>0)){
+                    if(((i*7+7)<50) &&((j*9+9)<150)){
             if(flag[i][j]==true){
                 srand(time(0));
                 int k=(rand()%4+1);
@@ -98,6 +100,7 @@ mappa::~mappa()
                 switch(k){
                     case 1:{
                         if(flag[i-1][j]==false){
+
                          strutturamappa[i][j]->room[0][4]='/';
                         istanzia(win1,i-1, j);
                         strutturamappa[i-1][j]->room[6][4]='/';
@@ -144,6 +147,7 @@ mappa::~mappa()
                 }
                 wrefresh(win1);
             }
+                    }}
         }
     }
 
@@ -152,7 +156,8 @@ mappa::~mappa()
 
             //crea una stanza all'interno della mappa nella posizione x,y presa in input
 //x,y indicano la posizione della prima stanza
-    mappa::istanzia(WINDOW *win1,int x,int y){
+    void mappa::istanzia(WINDOW *win1,int x,int y){
     strutturamappa[x][y]->creastanza();
+
 
 }

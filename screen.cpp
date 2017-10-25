@@ -16,7 +16,7 @@ screen::~screen()
     //dtor
 }
 
-screen::inizializzafinestra(){
+ void screen::inizializzafinestra(){
     win1=newwin(40,150,0,0);
     win2=newwin(5,150,40,0);
     //getch();
@@ -34,11 +34,11 @@ screen::inizializzafinestra(){
     //getch();
 }
 
-screen::stampadentromappa(char* test){
+ void screen::stampadentromappa(char* test){
 
-    wmove(win1,5,5);
-    //wprintw(win1,"%s",test);
-    wrefresh(win1);
+    wmove(win2,3,7);
+    wprintw(win2,"%s",test);
+    wrefresh(win2);
     getch();
 }
 

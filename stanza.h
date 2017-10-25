@@ -3,7 +3,7 @@
 #include<vector>
 #include<iostream>
 #include "screen.h"
-#include "Array.h"
+
 //#include "mappa.h"
 
 using namespace std;
@@ -14,16 +14,16 @@ class stanza
         stanza();
         char room[7][10];
 
+
         virtual ~stanza();
-        creastanza();
-        stamparoom();
-        creaporta();
-        wprintroom(WINDOW *win1,int x,int y);
-        stanzasucc(WINDOW *win1);
+        void creastanza();
+        void stamparoom();
+        void creaporta();
+        void wprintroom(WINDOW *win1,int x,int y);
+       void  stanzasucc(WINDOW *win1);
 
 
     protected:
-
 
     private:
 };

@@ -25,7 +25,7 @@ stanza::~stanza()
     //dtor
 
 }
-     stanza::creastanza(){
+   void stanza::creastanza(){
         for(int r=0;r<7;r++){
             for(int c=0;c<9;c++){
                  room[r][c]=' ';
@@ -40,13 +40,12 @@ stanza::~stanza()
                 room[0][c]='-';
                 room[6][c]='-';
         }
-
-
+        room[3][4]='j';
     }
 
 
 
-     stanza::stamparoom(){
+     void stanza::stamparoom(){
          for(int i=1;i<7;i++){
             for(int j=1;j<9;j++){
                 cout<<room[i][j];
@@ -56,7 +55,7 @@ stanza::~stanza()
      }
 
 
-    stanza::wprintroom(WINDOW *win1,int x,int y){
+   void stanza::wprintroom(WINDOW *win1,int x,int y){
     //cout<<"entra";
 //ciclo per stampare la stanza, stampiamo come se fossero "array" di riga
                 for(int r=0;r<7;r++){
@@ -67,7 +66,7 @@ stanza::~stanza()
               // printf(ptr);
     }
 
-    stanza::stanzasucc(WINDOW *win1){
+    void stanza::stanzasucc(WINDOW *win1){
         srand(time(0));
         int k=(rand()%4+1);
         //senso orario

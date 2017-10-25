@@ -20,7 +20,7 @@ initscr();
     stanza bla;
     screen finestra;
     finestra.inizializzafinestra();
-    //finestra.stampadentromappa(bla.ptr);
+
 
 
     pippo.creamappa();
@@ -36,11 +36,12 @@ pippo.istanzia(finestra.win1,2,8);
     //bla.creaporta();
      //cout<<"comincia";
         //bla.wprintroom(finestra.win1,9,50);
-        pippo.stanzasucc(finestra.win1);
+        //pippo.stanzasucc(finestra.win1);
         keypad(stdscr, TRUE);
-           pos.posmove(finestra.win1,pippo,2,8);
-
-
+            while(true){
+           pos.posmove(finestra.win1,pippo);
+//finestra.stampadentromappa("ciao");
+            }
        // bla.stanzasucc(finestra.win1);
 
 

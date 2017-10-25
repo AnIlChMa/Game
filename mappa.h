@@ -10,16 +10,17 @@ class mappa
 
         mappa();
         virtual ~mappa();
-        creamappa();
-        scriviinfinestra(WINDOW *win1);
-                 stampamappa();
-        esistestanza(WINDOW *win1);
-        stanzasucc(WINDOW *win1);
+        void creamappa();
+        //scriviinfinestra(WINDOW *win1);
+                 void stampamappa();
+        void esistestanza(WINDOW *win1);
+        void stanzasucc(WINDOW *win1);
 
         std::vector<std::vector<stanza*> > strutturamappa;
-        istanzia(WINDOW *win1,int x,int y);
+       void istanzia(WINDOW *win1,int x,int y);
 
     protected:
+
 
     private:
 };
