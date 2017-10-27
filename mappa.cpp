@@ -91,8 +91,7 @@ mappa::~mappa()
     }
     for(int i=0; i<20;i++){
         for(int j=0;j<20;j++){
-                if(((i*7)>1) && ((j*9)>0)){
-                    if(((i*7+7)<50) &&((j*9+9)<150)){
+
             if(flag[i][j]==true){
                 srand(time(0));
                 int k=(rand()%4+1);
@@ -147,7 +146,6 @@ mappa::~mappa()
                 }
                 wrefresh(win1);
             }
-                    }}
         }
     }
 
@@ -157,7 +155,9 @@ mappa::~mappa()
             //crea una stanza all'interno della mappa nella posizione x,y presa in input
 //x,y indicano la posizione della prima stanza
     void mappa::istanzia(WINDOW *win1,int x,int y){
+        if(((x*7)>0) && ((y*9)>0)){
+                    if(((x*7+7)<48) &&((y*9+9)<150)){
     strutturamappa[x][y]->creastanza();
-
+                    }}
 
 }

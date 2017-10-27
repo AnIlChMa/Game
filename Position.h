@@ -14,15 +14,17 @@ class Position
         void passaporta(WINDOW *win1,mappa mapp);
         void crealivello(WINDOW *win1,mappa mapp);
 
-
-
-    protected:
-        char main_char = '@';
-          int posx;
-        char a[1];
-        int posy;
-        int posi;
+ int posi;
         int posj;
+        int posy;
+ int posx;
+ char main_char = '@';
+ int h;
+    protected:
+
+
+        char a[1];
+
 
          struct level{
         int num;

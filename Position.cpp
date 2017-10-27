@@ -14,6 +14,7 @@ Position::Position()
     p->next=NULL;
     posi=2;
     posj=8;
+    h=50;
 
     //ctor
 }
