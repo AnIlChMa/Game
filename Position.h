@@ -2,6 +2,7 @@
 #define POSITION_H
 #include "screen.h"
 #include "mappa.h"
+#include "mostro.h"
 
 
 class Position
@@ -10,9 +11,9 @@ class Position
         Position();
 
         //virtual ~Position();
-        void posmove(WINDOW *win1,mappa mapp);
+        void posmove(WINDOW *win1,mappa mapp,int it,int jt);
         void passaporta(WINDOW *win1,mappa mapp);
-        void crealivello(WINDOW *win1,mappa mapp);
+        void crealivello(WINDOW *win1,mappa mapp, mostro mostr);
 
  int posi;
         int posj;

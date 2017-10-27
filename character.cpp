@@ -7,6 +7,8 @@
 
 character::character()
 {
+    this->attacco;
+    this->difesa;
     //ctor
 }
 

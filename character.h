@@ -10,7 +10,7 @@ class character
 {
     public:
         character();
-        virtual ~character();
+        //virtual ~character();
 
         //battaglia(WINDOW *win1);
         bool vivo();

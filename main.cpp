@@ -6,6 +6,7 @@
 #include <ncurses/curses.h>
 #include "screen.h"
 #include "Position.h"
+#include "mostro.h"
 #include<vector>
 using namespace std;
 //const int size=12;
@@ -19,6 +20,7 @@ initscr();
     Position pos;
     stanza bla;
     screen finestra;
+    mostro most;
     finestra.inizializzafinestra();
 
 
@@ -39,7 +41,8 @@ pippo.istanzia(finestra.win1,2,8);
         //pippo.stanzasucc(finestra.win1);
         keypad(stdscr, TRUE);
             while(true){
-           pos.posmove(finestra.win1,pippo);
+           pos.posmove(finestra.win1,pippo,1,1);
+
 //finestra.stampadentromappa("ciao");
             }
        // bla.stanzasucc(finestra.win1);
