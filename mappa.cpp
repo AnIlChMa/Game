@@ -1,6 +1,5 @@
 #include "mappa.h"
 #include "stanza.h"
-//#include "stanza.cpp"
 #include <iostream>
 #include<time.h>
 #include<stdlib.h>
@@ -79,8 +78,12 @@ mappa::~mappa()
 
         }
 
-   void mappa::stanzasucc(WINDOW *win1){
+   //crea una stanza adiacente ad una che è già stata creata, la posizione di questa stanza viene decisa tramite un numero random da 1 a 4.
+
+void mappa::stanzasucc(WINDOW *win1, int x,int y){
     bool flag[20][20];
+     wclear(win1);
+    //ciclo che crea la matrice di 0 e 1 per vedere in che punto è già presente una stanza
     for(int i=0;i<20;i++){
         for(int j=0;j<20;j++){
             if(strutturamappa[i][j]->room[0][0]!=' ')
@@ -89,75 +92,164 @@ mappa::~mappa()
                 flag[i][j]=false;
         }
     }
-    for(int i=0; i<20;i++){
-        for(int j=0;j<20;j++){
+    //leggiama la matrice flag
 
-            if(flag[i][j]==true){
-                srand(time(0));
+   // for(int i=0; i<20;i++){
+       // for(int j=0;j<20;j++){
+            //se troviamo un 1 (quindi è presente una stanza) tramite k (numero random) scegliamo la posizione della stanza adiacente e la istanziamo e poi la stampiamo
+            while(flag[x][y]==true){
+                srand((unsigned)time(0));
                 int k=(rand()%4+1);
 
                 switch(k){
+                        //stanza in alto
                     case 1:{
-                        if(flag[i-1][j]==false){
 
-                         strutturamappa[i][j]->room[0][4]='/';
-                        istanzia(win1,i-1, j);
-                        strutturamappa[i-1][j]->room[6][4]='/';
-                        esistestanza(win1);
+                                if(flag[x-1][y]== false){
+
+                            //prima mette la porta nella stanza corrente
+                        strutturamappa[x][y]->room[0][4]='/';
+                        istanzia(win1,x-1, y);
+
+                            //poi nella stanza adiacente che andremo a creare
+                        strutturamappa[x-1][y]->room[6][4]='/';
+
+
+                        controllo(win1, x, y);
                         wrefresh(win1);
-                        }
+                                    x--;
+                                }
+
                     }
                         break;
+                        //stanza a destra
                     case 2:{
-                        if(flag[i][j+1]==false){
-                        strutturamappa[i][j]->room[3][8]='/';
-                         istanzia(win1, i, j+1);
-                        strutturamappa[i][j+1]->room[3][0]='/';
 
-                        esistestanza(win1);
+                                if(flag[x][y+1]== false){
+
+                        strutturamappa[x][y]->room[3][8]='/';
+                         istanzia(win1, x, y+1);
+
+                        strutturamappa[x][y+1]->room[3][0]='/';
+
+
+                        controllo(win1, x, y);
                         wrefresh(win1);
-                        }
+                                    y++;
+                                }
+
                     }
                         break;
+                        //stanza in basso
                     case 3:{
-                        if(flag[i+1][j]==false){
-                        strutturamappa[i][j]->room[6][4]='/';
-                        istanzia(win1,i+1, j);
-                        strutturamappa[i+1][j]->room[0][4]='/';
 
-                        esistestanza(win1);
-                        wrefresh(win1);}
+                                if(flag[x+1][y]== false){
 
-                    }
-                        break;
-                    case 4:{
-                        if(flag[i][j-1]==false){
-                        strutturamappa[i][j]->room[3][0]='/';
-                        istanzia(win1, i, j-1);
-                        strutturamappa[i][j-1]->room[3][8]='/';
+                        strutturamappa[x][y]->room[6][4]='/';
+                        istanzia(win1,x+1, y);
 
-                        esistestanza(win1);
+                        strutturamappa[x+1][y]->room[0][4]='/';
+
+
+                        controllo(win1, x, y);
                         wrefresh(win1);
-                        }
-                    }
-                        break;
+                                    x++;
+                            }
+
+                }
+                         break;
+                        //stanza a sinistra
+                    case 4:{
+
+                                if(flag[x][y-1]== false){
+
+                       strutturamappa[x][y]->room[3][0]='/';
+                        istanzia(win1, x, y-1);
+
+                        strutturamappa[x][y-1]->room[3][8]='/';
+
+
+                        controllo(win1, x, y);
+                        wrefresh(win1);
+                                    y--;
+                            }
+
+                }
                     default:
                         break;
                 }
-                wrefresh(win1);
-            }
-        }
-    }
 
+            }
+     //   }
+   // }
 }
 
 
-            //crea una stanza all'interno della mappa nella posizione x,y presa in input
-//x,y indicano la posizione della prima stanza
-    void mappa::istanzia(WINDOW *win1,int x,int y){
-        if(((x*7)>0) && ((y*9)>0)){
-                    if(((x*7+7)<48) &&((y*9+9)<150)){
-    strutturamappa[x][y]->creastanza();
-                    }}
+
+//istanzia una stanza all'interno della mappa nella posizione x,y presa in input
+
+  void  mappa::istanzia(WINDOW *win1,int x,int y){
+      if((x*7)>0 && (y*9)>0){
+          if((x*7+7)<35 && (y*9+9)<110){
+              strutturamappa[x][y]->creastanza();
+          }
+      }
+      else
+      stanzasucc(win1, x, y); //se una stanza non viene istanziata chiedo di generarne un'altra
+}
+
+//funzione che toglie la porta nel caso in cui la stanza succesiva non viene istanziata perchè tocca il bordo
+void mappa::controllo(WINDOW *win1, int x, int y){
+
+    bool flag[20][20];
+
+    //ciclo che crea la matrice di 0 e 1 per vedere in che punto è già presente una stanza
+    for(int i=0;i<20;i++){
+        for(int j=0;j<20;j++){
+            if(strutturamappa[i][j]->room[0][0]!=' ')
+                flag[i][j]=true;
+            else
+                flag[i][j]=false;
+        }
+    }
+
+            if(flag[x][y]==true){
+                //leggo la matrice stanza
+                for(int r=0;r<7;r++){
+                    for(int c=0;c<9;c++){
+                        if(strutturamappa[x][y]->room[r][c]=='/'){
+                            //se la stanza sopra non è stata creata
+                            if(flag[x-1][y]==false){
+                              strutturamappa[x][y]->room[0][4]='-';
+                                esistestanza(win1);
+                                wrefresh(win1);
+                            }
+                            //se la stanza sotto non è stata creata
+                            if(flag[x+1][y]==false){
+                                strutturamappa[x][y]->room[6][4]='-';
+
+                                esistestanza(win1);
+                                wrefresh(win1);
+                            }
+                            //se la stanza a sinistra non è stata creata
+                            if(flag[x][y-1]==false){
+                                strutturamappa[x][y]->room[3][0]='|';
+
+                                esistestanza(win1);
+                                wrefresh(win1);
+                            }
+                            //se la stanza a destra non è stata creata
+                            if(flag[x][y+1]==false){
+                                strutturamappa[x][y]->room[3][8]='|';
+
+                                esistestanza(win1);
+                                wrefresh(win1);
+                            }
+
+                        }
+                 }
+
+        }
+    }
 
 }

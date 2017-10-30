@@ -3,6 +3,7 @@
 #include "screen.h"
 #include "mappa.h"
 #include "mostro.h"
+#include "character.h"
 
 
 class Position
@@ -11,29 +12,23 @@ class Position
         Position();
 
         //virtual ~Position();
-        void posmove(WINDOW *win1,mappa mapp,int it,int jt);
-        void passaporta(WINDOW *win1,mappa mapp);
-        void crealivello(WINDOW *win1,mappa mapp, mostro mostr);
-
- int posi;
+void posmove(WINDOW *win1,WINDOW *win2, mappa mapp, screen scr,character chr, Position pos);
+void passaporta(WINDOW *win1,WINDOW *win2, mappa mapp, screen scr, character chr, Position pos);
+         void crealivello(WINDOW *win1,WINDOW *win2,mappa mapp, screen scr, character chr);
+    void generachiave(WINDOW *win1,mappa mapp);
+    void generamostri(WINDOW *win1,mappa mapp);
+    void generamonete(WINDOW *win1,mappa mapp);
+        int posi;
         int posj;
         int posy;
- int posx;
- char main_char = '@';
- int h;
+        int posx;
+        char main_char = '@';
+        int h;
+        int level;
+        int ch;
     protected:
+        int numstanza;
 
-
-        char a[1];
-
-
-         struct level{
-        int num;
-        int nstanza;
-        level *next;
-    };
-    typedef level *ptr_level;
-    ptr_level p;
 
     private:
 };

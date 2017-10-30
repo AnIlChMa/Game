@@ -9,19 +9,12 @@ class screen
         virtual ~screen();
         void inizializzafinestra();
         void stampadentromappa(char* test);
-        WINDOW *win1, *win2;
+        void statusvita(WINDOW *win2, int vita);
+        void statuslivello(WINDOW *win2 ,int level);
+        void  statusmonete(WINDOW *win2, int monete);
+        WINDOW *win1, *win2, *win3;
 
     protected:
-        int x, y;
-        int altezza, larghezza;
-
-
-        //sottofinestre per il gioco
-
-        //ci dice se è o meno una sottofinestra
-        bool flag;
-        //puntatore finestra padre(terminale)
-        WINDOW *padre;
 
     private:
 };

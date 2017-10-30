@@ -40,7 +40,6 @@ stanza::~stanza()
                 room[0][c]='-';
                 room[6][c]='-';
         }
-        room[3][4]='j';
     }
 
 
@@ -65,7 +64,7 @@ stanza::~stanza()
             wrefresh(win1);
               // printf(ptr);
     }
-
+/*
     void stanza::stanzasucc(WINDOW *win1){
         srand(time(0));
         int k=(rand()%4+1);
@@ -93,7 +92,7 @@ stanza::~stanza()
         }
         wrefresh(win1);
         }
-
+*/
 
 
 

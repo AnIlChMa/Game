@@ -1,28 +1,55 @@
 #include "mostro.h"
 #include <math.h>
-#include <iostream>
-#include<stdlib.h>
+
 
 mostro::mostro()
 {
+
     //ctor
-    this->attacco;
-    this->difesa;
-    this->descr;
+   nome='M';
 
 }
 
-mostro::battaglia(WINDOW *win1){
-    //controllo che ci sia vita
+//il mostro attacca il personaggio
+void mostro::mostrovscharacter(WINDOW *win1,WINDOW *win2, screen scr,Position pos,mappa mapp){
+    if(mapp.strutturamappa[pos.posi][pos.posj]->room[pos.posx][pos.posy-1]==nome){
+            if(mapp.strutturamappa[pos.posi][pos.posj]->room[pos.posx][pos.posy+1]==nome){
+                if(mapp.strutturamappa[pos.posi][pos.posj]->room[pos.posx-1][pos.posy]==nome){
+                    if(mapp.strutturamappa[pos.posi][pos.posj]->room[pos.posx+1][pos.posy]==nome){
+//controllo che ci sia vita
     if (character::vita>0){
-            //se l'attacco del personaggi è minore della difesa del mostro tolgo vita al personaggio altrimnti al mostro
-       int k=(character::attacco)-(difesa);
-                character::vita=character::vita-(k*0.1);
-                vivo();}
+        //se l'attacco del personaggi è minore della difesa del mostro tolgo vita al personaggio altrimnti al mostro
+        int k=(attacco)-(character::difesa);
+        character::vita=character::vita-(k*0.1);
+        scr.statusvita(win2, character::vita);
+        character::vivo(win2,scr);
+    }
+    }
+                }
+            }
+    }
+}
 
+//il personaggio attacca il mostro
+void mostro::charactervsmostro(WINDOW *win1,WINDOW *win2, screen scr,mappa mapp,Position pos){
+    if(mapp.strutturamappa[pos.posi][pos.posj]->room[pos.posx][pos.posy-1]==nome){
+            if(mapp.strutturamappa[pos.posi][pos.posj]->room[pos.posx][pos.posy+1]==nome){
+                if(mapp.strutturamappa[pos.posi][pos.posj]->room[pos.posx-1][pos.posy]==nome){
+                    if(mapp.strutturamappa[pos.posi][pos.posj]->room[pos.posx+1][pos.posy]==nome){
+    if (vita>0){
+        //se l'attacco del personaggi è minore della difesa del mostro tolgo vita al personaggio altrimnti al mostro
+        int k=(character::attacco)-(difesa);
+        vita=vita-(k*0.1);
+        scr.statusvita(win2, vita);
+    }
+                    }
+                }
+            }
     }
 
-    mostro::movimento(WINDOW *win1,mappa mapp,Position pos,int i,int j){
+}
+//funzione  che muove il mostro
+void mostro::movimento(WINDOW *win1,mappa mapp,Position pos,int i,int j){
         int poss = -1;
         int	 score = (pos.posx)*(pos.posx )+ (pos.posy*pos.posy);
         	int dist = -1;
@@ -53,7 +80,7 @@ mostro::battaglia(WINDOW *win1){
         dist=pow(i-pos.posx,2)+pow(j-pos.posy,2);
         	 		if(score > dist) {
  			score = dist;
- 			poss = 1;
+ 			poss = 2;
  		}
  		wrefresh(win1);
  	}
@@ -63,136 +90,38 @@ mostro::battaglia(WINDOW *win1){
         dist=pow(i-pos.posx,2)+pow(j-pos.posy,2);
         	 		if(score > dist) {
  			score = dist;
- 			poss = 1;
+ 			poss = 3;
  		}
  		wrefresh(win1);
  	}
 
  	switch(poss) {
  		case 0:
- 		    mapp.strutturamappa[pos.posi][pos.posj]->room[pos.posx][pos.posy-1]='M';
+ 		    mapp.strutturamappa[pos.posi][pos.posj]->room[pos.posx][pos.posy-1]=nome;
+ 		    mapp.esistestanza(win1);
  			break;
  		case 1:
- 		    mapp.strutturamappa[pos.posi][pos.posj]->room[pos.posx][pos.posy+1]='M';
+ 		    mapp.strutturamappa[pos.posi][pos.posj]->room[pos.posx][pos.posy+1]=nome;
+ 		    mapp.esistestanza(win1);
  			break;
  		case 2:
- 		    mapp.strutturamappa[pos.posi][pos.posj]->room[pos.posx-1][pos.posy]='M';
+ 		    mapp.strutturamappa[pos.posi][pos.posj]->room[pos.posx-1][pos.posy]=nome;
+ 		    mapp.esistestanza(win1);
 			break;
  		case 3:
- 		    mapp.strutturamappa[pos.posi][pos.posj]->room[pos.posx+1][pos.posy]='M';
+ 		    mapp.strutturamappa[pos.posi][pos.posj]->room[pos.posx+1][pos.posy]=nome;
+ 		    mapp.esistestanza(win1);
  			break;
  	}
     }
 
 
-/*
-void mostro::movimento(WINDOW *win1,mappa mapp){
-    int ch= 0;
-    //mapp.strutturamappa[posi][posj]->room[posx][posy]=a[0];
+    void mostro::inseriscimostro(WINDOW *win1, mappa mapp, Position pos){
+          mapp.strutturamappa[pos.posi][pos.posj]->room[4][4]=nome;
     mapp.esistestanza(win1);
-    if((ch=getch())!= 'q')
-    {
-        switch(ch)
-        {
-            case 0:{
-                if(mapp.strutturamappa[posi][posj]->room[posx-1][posy]!='-' ){
-                        if(mapp.strutturamappa[posi][posj]->room[posx-1][posy] ==' '){
-                        mapp.strutturamappa[posi][posj]->room[posx][posy]=' ';
-                        posx--;
-                        mapp.strutturamappa[posi][posj]->room[posx][posy]=main_char;
-                        crealivello(win1, mapp);
-                    }
-                        if(mapp.strutturamappa[posi][posj]->room[posx-1][posy]=='/'){
-                                passaporta(win1,mapp);}
-                        else{
-                mapp.strutturamappa[posi][posj]->room[posx][posy]=' ';
-                posx--;
+    wrefresh(win1);
 
-                mapp.strutturamappa[posi][posj]->room[posx][posy]=main_char;
-                mapp.esistestanza(win1);
-                        }
-                }
-                else
-                    mapp.strutturamappa[posi][posj]->room[posx][posy]=main_char;
-            break;
-            }
 
-            case 1:{
+}
 
-                if(mapp.strutturamappa[posi][posj]->room[posx+1][posy]!='-' ){
-                          if(mapp.strutturamappa[posi][posj]->room[posx+1][posy] =='j'){
-                        mapp.strutturamappa[posi][posj]->room[posx][posy]=' ';
-                        posx++;
-                        mapp.strutturamappa[posi][posj]->room[ posx][ posy]=main_char;
-                        crealivello(win1, mapp);
-                    }
-                        if(mapp.strutturamappa[posi][posj]->room[posx+1][posy]=='/'){
-                                passaporta(win1,mapp);}
-                        else{
-                mapp.strutturamappa[posi][posj]->room[posx][posy]=' ';
-                posx++;
-                mapp.strutturamappa[posi][posj]->room[posx][posy]=main_char;
-                mapp.esistestanza(win1);
-                }
-                }
-                else
-                    mapp.strutturamappa[posi][posj]->room[posx][posy]=main_char;
-                break;
 
-            }
-
-            case 2:{
-                if(mapp.strutturamappa[posi][posj]->room[posx][posy+1]!='|' ){
-                          if(mapp.strutturamappa[posi][posj]->room[posx][posy+1] =='j'){
-                        mapp.strutturamappa[posi][posj]->room[posx][posy]=' ';
-                        posy++;
-                        mapp.strutturamappa[posi][posj]->room[ posx][ posy]=main_char;
-                        crealivello(win1, mapp);
-                    }
-                        if(mapp.strutturamappa[posi][posj]->room[posx][posy+1]=='/'){
-                                passaporta(win1,mapp);}
-                        else{
-                mapp.strutturamappa[posi][posj]->room[posx][posy]=' ';
-                posy++;
-
-                mapp.strutturamappa[posi][posj]->room[posx][posy]=main_char;
-                mapp.esistestanza(win1);
-                }}
-                else
-                    mapp.strutturamappa[posi][posj]->room[posx][posy]=main_char;
-                break;
-
-            }
-
-            case 3:{
-                if(mapp.strutturamappa[posi][posj]->room[posx][posy-1]!='|' ){
-                          if(mapp.strutturamappa[posi][posj]->room[posx][posy-1] =='j'){
-                        mapp.strutturamappa[posi][posj]->room[posx][posy]=' ';
-                        posy--;
-                        mapp.strutturamappa[posi][posj]->room[ posx][ posy]=main_char;
-                        crealivello(win1, mapp);
-                    }
-                        if(mapp.strutturamappa[posi][posj]->room[posx][posy-1]=='/'){
-                                passaporta(win1,mapp);}
-                        else{
-                mapp.strutturamappa[posi][posj]->room[posx][posy]=' ';
-                posy--;
-
-                mapp.strutturamappa[posi][posj]->room[posx][posy]=main_char;
-                mapp.esistestanza(win1);
-                }
-            }
-                else
-                    mapp.strutturamappa[posi][posj]->room[posx][posy]=main_char;
-                break;
-
-            }
-
-            default:
-                break;
-        }
-        wrefresh(win1);
-
-    }
-
-}*/

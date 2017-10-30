@@ -12,9 +12,10 @@ class mappa
         virtual ~mappa();
         void creamappa();
         //scriviinfinestra(WINDOW *win1);
-                 void stampamappa();
+                 //void stampamappa();
         void esistestanza(WINDOW *win1);
-        void stanzasucc(WINDOW *win1);
+        void stanzasucc(WINDOW *win1,int x,int y);
+        void controllo(WINDOW *win1, int x, int y);
 
         std::vector<std::vector<stanza*> > strutturamappa;
        void istanzia(WINDOW *win1,int x,int y);

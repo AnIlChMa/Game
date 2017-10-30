@@ -1,19 +1,18 @@
+
 #include "character.h"
 #include "Position.h"
-#include "mappa.h"
-#include "screen.h"
-
-
 
 character::character()
 {
-    this->attacco;
-    this->difesa;
-    //ctor
+    monete=0;
+    nome='@';
+    vita=200;
+    p= new loggetti;
 }
 
 
-bool character::vivo(){
+bool character::vivo(WINDOW *win2, screen scr){
+    scr.statusvita(win2, vita);
     if(vita<=0)
         return false;
     else
@@ -22,96 +21,122 @@ bool character::vivo(){
 
 
 
-void character::raccoglioggetti(WINDOW *win1,mappa mapp,Position pos){
-    int ch=0;
-    if((ch=getch())!= 'q')
-    {
-    switch(ch)
+void character::raccoglioggetti(WINDOW *win1,WINDOW *win2,mappa mapp,screen scr, Position pos){
+    scr.statusmonete(win2, monete);
+
+        switch(pos.ch)
         {
-            case KEY_UP:{
+                cout<<pos.ch;
+            case 1:{
+
                 if(mapp.strutturamappa[pos.posi][pos.posj]->room[pos.posx+1][pos.posy]=='o' ){
                     monete++;
+                    scr.statusmonete(win2, monete);
+                    wrefresh(win2);
                     if (mapp.strutturamappa[pos.posi][pos.posj]->room[pos.posx+1][pos.posy]=='X'){
-                        p->nomeogg;
-                        p->next;
+                        p=p->next;
+                        p->nomeogg='X';
                         if (mapp.strutturamappa[pos.posi][pos.posj]->room[pos.posx+1][pos.posy]=='j'){
-                                p->nomeogg;
-                                p->next;}}
-                        mapp.strutturamappa[pos.posi][pos.posj]->room[pos.posx][pos.posy]=' ';
-                        pos.posx--;
-                        mapp.strutturamappa[pos.posi][pos.posj]->room[pos.posx][pos.posy]=pos.main_char;
+                            p=p->next;
+                            p->nomeogg='j';
                         }
-                else
-                    mapp.strutturamappa[pos.posi][pos.posj]->room[pos.posx][pos.posy]=pos.main_char;
-            break;
+                    }
+                break;
             }
 
-            case KEY_DOWN:{
+            case 3:{
 
-                 if(mapp.strutturamappa[pos.posi][pos.posj]->room[pos.posx-1][pos.posy]=='o' ){
+                if(mapp.strutturamappa[pos.posi][pos.posj]->room[pos.posx-1][pos.posy]=='o' ){
                     monete++;
+                    scr.statusmonete(win2, monete);
+                    wrefresh(win2);
                     if (mapp.strutturamappa[pos.posi][pos.posj]->room[pos.posx-1][pos.posy]=='X'){
-                        p->nomeogg;
-                        p->next;
-                       if (mapp.strutturamappa[pos.posi][pos.posj]->room[pos.posx-1][pos.posy]=='j'){
-                                p->nomeogg;
-                                p->next;}}
-                        mapp.strutturamappa[pos.posi][pos.posj]->room[pos.posx][pos.posy]=' ';
-                        pos.posx++;
-                        mapp.strutturamappa[pos.posi][pos.posj]->room[pos.posx][pos.posy]=pos.main_char;}
-                else
-                    mapp.strutturamappa[pos.posi][pos.posj]->room[pos.posx][pos.posy]=pos.main_char;
-            break;
+                        p=p->next;
+                        p->nomeogg='X';
+                        if (mapp.strutturamappa[pos.posi][pos.posj]->room[pos.posx-1][pos.posy]=='j'){
+                            p=p->next;
+                            p->nomeogg='j';
+                        }
+                    }
+                }
+                break;
             }
 
-            case KEY_RIGHT:{
-                 if(mapp.strutturamappa[pos.posi][pos.posj]->room[pos.posx][pos.posy+1]=='o' ){
+            case 2:{
+                if(mapp.strutturamappa[pos.posi][pos.posj]->room[pos.posx][pos.posy+1]=='o' ){
                     monete++;
+                    scr.statusmonete(win2, monete);
+                    wrefresh(win2);
                     if (mapp.strutturamappa[pos.posi][pos.posj]->room[pos.posx][pos.posy+1]=='X'){
-                        p->nomeogg;
-                        p->next;
+                        p=p->next;
+                        p->nomeogg='X';
+
                         if (mapp.strutturamappa[pos.posi][pos.posj]->room[pos.posx][pos.posy+1]=='j'){
-                                p->nomeogg;
-                                p->next;}}
-                        mapp.strutturamappa[pos.posi][pos.posj]->room[pos.posx][pos.posy]=' ';
-                        pos.posy++;
-                        mapp.strutturamappa[pos.posi][pos.posj]->room[pos.posx][pos.posy]=pos.main_char;}
-                else
-                    mapp.strutturamappa[pos.posi][pos.posj]->room[pos.posx][pos.posy]=pos.main_char;
-            break;
+                            p=p->next;
+                            p->nomeogg='j';
+
+                        }
+                    }
+                }
+                                    break;
             }
 
-            case KEY_LEFT:{
+            case 4:{
                 if(mapp.strutturamappa[pos.posi][pos.posj]->room[pos.posx][pos.posy-1]=='o' ){
                     monete++;
+                    scr.statusmonete(win2, monete);
+                    wrefresh(win2);
                     if (mapp.strutturamappa[pos.posi][pos.posj]->room[pos.posx][pos.posy-1]=='X'){
-                        p->nomeogg;
-                        p->next;
+                        p=p->next;
+                        p->nomeogg='X';
+
                         if (mapp.strutturamappa[pos.posi][pos.posj]->room[pos.posx][pos.posy-1]=='j'){
-                                p->nomeogg;
-                                p->next;}}
-                        mapp.strutturamappa[pos.posi][pos.posj]->room[pos.posx][pos.posy]=' ';
-                        pos.posy--;
-                        mapp.strutturamappa[pos.posi][pos.posj]->room[pos.posx][pos.posy]=pos.main_char;}
-                else
-                    mapp.strutturamappa[pos.posi][pos.posj]->room[pos.posx][pos.posy]=pos.main_char;
-            break;
+                            p=p->next;
+                            p->nomeogg='j';
+                            }
+                    }
+                   }
+                break;
             }
 
             default:
                 break;
+            }
         }
-        wrefresh(win1);
+    }
+
+    //wrefresh(win2);
+    /*if(map.strutturamappa[pos.posi][pos.posj]->room[pos.posx-1][pos.posy]=='o'){
+
+
+                    monete++;
+                    scr.statusmonete(win2, monete);
+        wrefresh(win2);
+    }
+    if (map.strutturamappa[pos.posi][pos.posj]->room[pos.posx][pos.posy]=='X'){
+            p->nomeogg='X';
+            //p->next;
+    }
+                        if (map.strutturamappa[pos.posi][pos.posj]->room[pos.posx][pos.posy]=='j'){
+                            p=p->next;
+                            p->nomeogg='j';
+                           //p->next;
+
+
+                }
+
+}*/
+
+//questa funzione dovrebbe permettere di usare gli oggeti ->svuotare la lista degli oggetti
+//adesso sta generando la chiave, dovrebbe essere integrata alla funzione generahiave
+void character::usaoggetti(WINDOW *win1,mappa mapp, Position pos){
+    if(monete==pos.h){
+        for(pos.posx=1;pos.posx<6;pos.posx++){
+            for(pos.posy=1;pos.posy<8;pos.posy++){
+
+                if(mapp.strutturamappa[pos.posi][pos.posj]->room[pos.posx][pos.posy]==' ')
+                    mapp.strutturamappa[pos.posi][pos.posj]->room[pos.posx][pos.posy]='j';
+            }
+        }
     }
 }
-
-void character::usaoggetti(WINDOW *win1,mappa mapp,Position pos){
-    if(monete==pos.h){
-    for(pos.posx=1;pos.posx<7;pos.posx++){
-        for(pos.posy=1;pos.posy<7;pos.posy++){
-
-        if(mapp.strutturamappa[pos.posi][pos.posj]->room[pos.posx][pos.posy]==' ')
-        mapp.strutturamappa[pos.posi][pos.posj]->room[pos.posx][pos.posy]='j';
-        }}
-    }
-    }

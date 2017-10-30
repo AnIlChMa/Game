@@ -6,50 +6,49 @@
 #include <ncurses/curses.h>
 #include "screen.h"
 #include "Position.h"
-#include "mostro.h"
+#include "character.h"
+#include "mappa.h"
 #include<vector>
 using namespace std;
 //const int size=12;
-
+//class character;
 
 int main()
 {
 initscr();
 
-    mappa pippo;
-    Position pos;
-    stanza bla;
+   stanza bla;
     screen finestra;
-    mostro most;
+    Position posit;
     finestra.inizializzafinestra();
-
-
-
+    mappa pippo;
+    character ch;
+    mostro mst;
     pippo.creamappa();
+    mst.inseriscimostro(finestra.win1, pippo, posit);
     //bla.creastanza();
-    //pippo.esistestanza();
+   // pippo.istanzia(finestra.win1,2,8);
+    // pippo.esistestanza(finestra.win1);
+    posit.crealivello(finestra.win1,finestra.win2, pippo, finestra,ch);
+    mst.movimento(finestra.win1, pippo, posit, 5, 3);
+   //pippo.stanzasucc(finestra.win1);
+    finestra.statusmonete(finestra.win2, ch.monete);
+   bool v= ch.vivo(finestra.win2, finestra);
+    //chr.raccoglioggetti(finestra.win1,finestra.win2, pippo, finestra, posit);
+   keypad(stdscr, TRUE);
 
-    //pippo.scriviinfinestra(finestra.win1);
+    while(v){
+   posit.posmove(finestra.win1,finestra.win2, pippo, finestra,ch,posit);
+    }
 
-pippo.istanzia(finestra.win1,2,8);
-     pippo.esistestanza(finestra.win1);
-
-
-    //bla.creaporta();
-     //cout<<"comincia";
-        //bla.wprintroom(finestra.win1,9,50);
-        //pippo.stanzasucc(finestra.win1);
-        keypad(stdscr, TRUE);
-            while(true){
-           pos.posmove(finestra.win1,pippo,1,1);
 
 //finestra.stampadentromappa("ciao");
-            }
+
        // bla.stanzasucc(finestra.win1);
 
 
 
-    refresh();
+
     getch();
     endwin();
     return 0;
