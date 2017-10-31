@@ -2,6 +2,9 @@
 #include <math.h>
 #include<stdio.h>
 #include <iostream>
+#include <time.h>
+#include <stdlib.h>
+
 
 
 mostro::mostro()
@@ -118,7 +121,7 @@ void mostro::movimento(WINDOW *win1,mappa mapp,Position pos){
  			break;
  	}
     }*/
-
+/*
 void mostro::movimento(WINDOW *win1, Position pos, mappa mapp){
     int direction=1;//rigth
     //2 left
@@ -160,14 +163,110 @@ void mostro::movimento(WINDOW *win1, Position pos, mappa mapp){
     }
 
     }
+}*/
+void mostro::movimento(WINDOW *win1,WINDOW *win2, mappa mapp, Position pos, screen scr){
+    srand(time(0));
+   int k=(rand()%4+1);
+
+        switch(k)
+        {
+            case 1:{
+
+                if(mapp.strutturamappa[pos.posi][pos.posj]->room[mostrox-1][mostroy] !='-'){
+                        if(mapp.strutturamappa[pos.posi][pos.posj]->room[mostrox+1][mostroy] =='@'){
+                        mostrovscharacter(win1, win2, scr,pos,mapp);
+                        //mapp.strutturamappa[pos.posi][pos.posj]->room[mostrox][mostroy]=nome;
+                    }
+                      else  if(mapp.strutturamappa[pos.posi][pos.posj]->room[mostrox-1][mostroy] ==' '){
+                  //mapp.strutturamappa[pos.posi][pos.posj]->room[mostrox][mostroy]=' ';
+                        pos.posx--;
+
+                        mapp.strutturamappa[pos.posi][pos.posj]->room[mostrox][ mostroy]=nome;
+              }}
+               break;
 }
 
-    void mostro::inseriscimostro(WINDOW *win1, mappa mapp, Position pos){
+
+            case 2:{
+
+                if(mapp.strutturamappa[pos.posi][pos.posj]->room[mostrox+1][mostroy] !='-' ){
+                    if(mapp.strutturamappa[pos.posi][pos.posj]->room[mostrox+1][mostroy] =='@'){
+                        mostrovscharacter(win1, win2, scr,pos,mapp);
+                        //mapp.strutturamappa[pos.posi][pos.posj]->room[mostrox][ mostroy]=nome;
+                    }
+
+                    else if(mapp.strutturamappa[pos.posi][pos.posj]->room[mostrox+1][mostroy] ==' '){
+                        //mapp.strutturamappa[pos.posi][pos.posj]->room[mostrox][mostroy]=' ';
+                        pos.posx++;
+
+                        mapp.strutturamappa[pos.posi][pos.posj]->room[mostrox][ mostroy]=nome;
+                        //mapp.esistestanza(win1);
+                        }
+             }
+
+                break;
+}
+
+
+            case 3:{
+
+                        if (mapp.strutturamappa[pos.posi][pos.posj]->room[mostrox][mostroy+1]!='|'){
+                            if(mapp.strutturamappa[pos.posi][pos.posj]->room[mostrox][mostroy+1] =='@'){
+                                mostrovscharacter(win1, win2, scr,pos,mapp);
+
+                                //mapp.strutturamappa[pos.posi][pos.posj]->room[mostrox][mostroy]=nome;
+                            }
+
+                    else if(mapp.strutturamappa[pos.posi][pos.posj]->room[mostrox][mostroy+1] ==' '){
+                        //mapp.strutturamappa[posi][posj]->room[mostrox][mostroy]=' ';
+                        pos.posy++;
+
+                        mapp.strutturamappa[pos.posi][pos.posj]->room[mostrox][mostroy]=nome;
+                        //mapp.esistestanza(win1);
+                    }
+
+                }
+                break;}
+
+
+
+            case 4:{
+
+
+                if(mapp.strutturamappa[pos.posi][pos.posj]->room[mostrox][mostroy-1]!='|'){
+                    if(mapp.strutturamappa[pos.posi][pos.posj]->room[mostrox][mostroy-1] =='@'){
+                        mostrovscharacter(win1, win2, scr,pos,mapp);
+
+                       // mapp.strutturamappa[pos.posi][pos.posj]->room[mostrox][mostroy]=nome;
+                    }
+
+                    else if(mapp.strutturamappa[pos.posi][pos.posj]->room[mostrox][mostroy-1] ==' '){
+                        //mapp.strutturamappa[pos.posi][pos.posj]->room[mostrox][ mostroy]=' ';
+                        pos.posy--;
+
+                        mapp.strutturamappa[pos.posi][pos.posj]->room[mostrox][mostroy]=nome;
+                        //mapp.esistestanza(win1);
+                    }
+
+
+               }
+                break;}
+
+
+
+            default:
+                break;
+        }
+
+        wrefresh(win1);
+
+}
+
+  /*  void mostro::inseriscimostro(WINDOW *win1, mappa mapp, Position pos){
           mapp.strutturamappa[pos.posi][pos.posj]->room[4][4]=nome;
     mapp.esistestanza(win1);
     wrefresh(win1);
 
-
-}
+}*/
 
 
