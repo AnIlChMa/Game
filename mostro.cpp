@@ -1,9 +1,12 @@
 #include "mostro.h"
 #include <math.h>
+#include<stdio.h>
+#include <iostream>
 
 
 mostro::mostro()
 {
+
 
     //ctor
    nome='M';
@@ -49,13 +52,14 @@ void mostro::charactervsmostro(WINDOW *win1,WINDOW *win2, screen scr,mappa mapp,
 
 }
 //funzione  che muove il mostro
-void mostro::movimento(WINDOW *win1,mappa mapp,Position pos,int i,int j){
+/*
+void mostro::movimento(WINDOW *win1,mappa mapp,Position pos){
         int poss = -1;
         int	 score = (pos.posx)*(pos.posx )+ (pos.posy*pos.posy);
         	int dist = -1;
         //si muove verso sinistra
         if(mapp.strutturamappa[pos.posi][pos.posj]->room[pos.posx][pos.posy-1] ==' '){
-                dist=pow(i-pos.posx,2)+pow(j-pos.posy,2);
+                dist=sqrt(pow(pos.posi-pos.posx,2)+pow((pos.posj+1)-pos.posy,2));
 
         //if( game_map.target_position(monster.row(), monster.col() - 1)) {
             //dist = std::pow(main_char.row() - monster.row(),2) + std::pow(main_char.col() - (monster.col() - 1),2);
@@ -67,7 +71,7 @@ void mostro::movimento(WINDOW *win1,mappa mapp,Position pos,int i,int j){
         }
  	// si muove verso destra
  	 if(mapp.strutturamappa[pos.posi][pos.posj]->room[pos.posx][pos.posy+1] ==' '){
-        dist=pow(i-pos.posx,2)+pow(j-pos.posy,2);
+        dist=sqrt(pow(pos.posi-pos.posx,2)+pow((pos.posj-1)-pos.posy,2));
         	 		if(score > dist) {
  			score = dist;
  			poss = 1;
@@ -77,7 +81,7 @@ void mostro::movimento(WINDOW *win1,mappa mapp,Position pos,int i,int j){
 
  	// si muove verso sopra
  	if(mapp.strutturamappa[pos.posi][pos.posj]->room[pos.posx-1][pos.posy] ==' '){
-        dist=pow(i-pos.posx,2)+pow(j-pos.posy,2);
+        dist=sqrt(pow((pos.posi-1)-pos.posx,2)+pow(pos.posj-pos.posy,2));
         	 		if(score > dist) {
  			score = dist;
  			poss = 2;
@@ -87,7 +91,7 @@ void mostro::movimento(WINDOW *win1,mappa mapp,Position pos,int i,int j){
 
  	// si muove verso sotto
  	if(mapp.strutturamappa[pos.posi][pos.posj]->room[pos.posx+1][pos.posy] ==' '){
-        dist=pow(i-pos.posx,2)+pow(j-pos.posy,2);
+        dist=sqrt(pow((pos.posi+1)-pos.posx,2)+pow(pos.posj-pos.posy,2));
         	 		if(score > dist) {
  			score = dist;
  			poss = 3;
@@ -113,8 +117,50 @@ void mostro::movimento(WINDOW *win1,mappa mapp,Position pos,int i,int j){
  		    mapp.esistestanza(win1);
  			break;
  	}
+    }*/
+
+void mostro::movimento(WINDOW *win1, Position pos, mappa mapp){
+    int direction=1;//rigth
+    //2 left
+    //3 up
+    //4 down
+
+    if((mapp.strutturamappa[pos.posi][pos.posj]->room[pos.posx-1][pos.posy] !='-') &&(mapp.strutturamappa[pos.posi][pos.posj]->room[pos.posx-1][pos.posy] !='|')){
+        double a = sqrt( pow((double) (mostrox-1)-pos.posx,2) + pow((double) mostroy-pos.posy,2)); //UP
+
+    double b = sqrt (pow((double) (mostrox+1)-pos.posx,2) + pow((double) mostroy-pos.posy,2)); //DOWN
+
+    double c = sqrt(pow((double) mostrox-pos.posx,2) + pow((double) (mostroy-1)-pos.posy,2)); //RIGHT
+
+    double d = sqrt(pow((double) mostrox-pos.posx,2) + pow((double) (mostroy+1)-pos.posy,2)); //LEFT
+
+    if(a < b && a <= c && a <= d && direction!=4) {
+            direction=3;
+    mapp.strutturamappa[pos.posi][pos.posj]->room[mostrox-1][mostroy]=nome;
+    mapp.esistestanza(win1);
+ 		    wrefresh(win1);}
+    else if(b <= c && b <= d && direction!=3 ){
+        direction=4;
+    mapp.strutturamappa[pos.posi][pos.posj]->room[mostrox+1][mostroy]=nome;
+    mapp.esistestanza(win1);
+ 		    wrefresh(win1);}
+
+    else if(c < d && direction!=2) {
+        mapp.strutturamappa[pos.posi][pos.posj]->room[mostrox][mostroy+1]=nome;
+        mapp.esistestanza(win1);
+ 		    wrefresh(win1);
+ 		    direction=1;
     }
 
+    else if(direction!=1){
+        mapp.strutturamappa[pos.posi][pos.posj]->room[mostrox][mostroy-1]=nome;
+        mapp.esistestanza(win1);
+ 		    wrefresh(win1);
+ 		    direction=2;
+    }
+
+    }
+}
 
     void mostro::inseriscimostro(WINDOW *win1, mappa mapp, Position pos){
           mapp.strutturamappa[pos.posi][pos.posj]->room[4][4]=nome;

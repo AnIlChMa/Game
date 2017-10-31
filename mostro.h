@@ -12,10 +12,12 @@ class mostro: public character{
     public:
     mostro();
     void charactervsmostro(WINDOW *win1,WINDOW *win2, screen scr,mappa mapp,Position pos);
-    void movimento(WINDOW *win1, mappa mapp, Position pos, int i, int j);
+   // void movimento(WINDOW *win1, mappa mapp, Position pos);
     void inseriscimostro(WINDOW *win1, mappa mapp, Position pos);
     void mostrovscharacter(WINDOW *win1,WINDOW *win2, screen scr,Position pos,mappa mapp);
-
+    void movimento(WINDOW *win1, Position pos, mappa mapp);
+    int mostrox;
+    int mostroy;
 };
 
 

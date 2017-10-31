@@ -30,7 +30,6 @@ initscr();
    // pippo.istanzia(finestra.win1,2,8);
     // pippo.esistestanza(finestra.win1);
     posit.crealivello(finestra.win1,finestra.win2, pippo, finestra,ch);
-    mst.movimento(finestra.win1, pippo, posit, 5, 3);
    //pippo.stanzasucc(finestra.win1);
     finestra.statusmonete(finestra.win2, ch.monete);
    bool v= ch.vivo(finestra.win2, finestra);
@@ -38,8 +37,13 @@ initscr();
    keypad(stdscr, TRUE);
 
     while(v){
+
    posit.posmove(finestra.win1,finestra.win2, pippo, finestra,ch,posit);
+   //mst.movimento(finestra.win1,pippo,posit);
+   mst.movimento(finestra.win1, posit,pippo);
+
     }
+
 
 
 //finestra.stampadentromappa("ciao");
